@@ -108,4 +108,19 @@ Alternatively, use CMake to autogenerate a build system for Windows:
     make
 
 
+** QNX (from Windows) Compilation **
+  - To build for the QNX platform on Windows, run cmd.exe and execute the following commands:
+    > cd [bbndk]				where [bbndk] is where the QNX NDK was installed (i.e. C:\bbndk)
+    > NativeSDK-env.bat
+    > cd [bullet]				where [bullet] is the directory where Bullet was extracted to
+    > cd qnx/BulletCollision
+    > make
+    > cd ../BulletDynamics
+    > make
+    > cd ../LinearMath
+    > make
+    Following this, the relevant binaries should reside in the qnx/BulletCollision/arm/, 
+    qnx/BulletDynamics/arm/, and qnx/LinearMath/arm/ subdirectories.
+
+
 ** For more help, visit http://www.bulletphysics.org **
