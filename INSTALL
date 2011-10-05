@@ -112,15 +112,24 @@ Alternatively, use CMake to autogenerate a build system for Windows:
   - To build for the QNX platform on Windows, run cmd.exe and execute the following commands:
     > cd [bbndk]				where [bbndk] is where the QNX NDK was installed (i.e. C:\bbndk)
     > NativeSDK-env.bat
-    > cd [bullet]				where [bullet] is the directory where Bullet was extracted to
-    > cd qnx/BulletCollision
+    > cd [bullet]/qnx			where [bullet] is the directory where Bullet was extracted to
     > make
-    > cd ../BulletDynamics
-    > make
-    > cd ../LinearMath
-    > make
-    Following this, the relevant binaries should reside in the qnx/BulletCollision/arm/, 
-    qnx/BulletDynamics/arm/, and qnx/LinearMath/arm/ subdirectories.
+    Following this, the relevant binaries should reside in the following subdirectories:
+    libBulletCollision: 
+        [bullet]/qnx/BulletCollision/arm/a.le.v7     (ARM release)
+        [bullet]/qnx/BulletCollision/arm/a.le.v7.g   (ARM debug)
+        [bullet]/qnx/BulletCollision/x86/a           (x86 simulator release)
+        [bullet]/qnx/BulletCollision/x86/a.g         (x86 simulator debug)
+    libBulletDynamics: 
+        [bullet]/qnx/BulletDynamics/arm/a.le.v7      (ARM release)
+        [bullet]/qnx/BulletDynamics/arm/a.le.v7.g    (ARM debug)
+        [bullet]/qnx/BulletDynamics/x86/a            (x86 simulator release)
+        [bullet]/qnx/BulletDynamics/x86/a.g          (x86 simulator debug)
+    libLinearMath: 
+        [bullet]/qnx/LinearMath/arm/a.le.v7          (ARM release)
+        [bullet]/qnx/LinearMath/arm/a.le.v7.g        (ARM debug)
+        [bullet]/qnx/LinearMath/x86/a                (x86 simulator release)
+        [bullet]/qnx/LinearMath/x86/a.g              (x86 simulator debug)
 
 
 ** For more help, visit http://www.bulletphysics.org **
