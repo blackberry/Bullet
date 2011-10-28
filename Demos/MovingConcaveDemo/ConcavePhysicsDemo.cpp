@@ -1859,8 +1859,9 @@ void ConcaveDemo::keyboardCallback(unsigned char key, int x, int y)
 	if (getDynamicsWorld() && getDynamicsWorld()->getDebugDrawer())
 		getDynamicsWorld()->getDebugDrawer()->setDebugMode(m_debugMode);
 
+#ifndef __QNX__
 	glutPostRedisplay();
-
+#endif
 }
 
 

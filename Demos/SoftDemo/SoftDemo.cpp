@@ -1682,6 +1682,7 @@ void	SoftDemo::renderme()
 	int xStart = m_glutScreenWidth - lineWidth;
 	int yStart = 20;
 
+#ifndef __QNX__
 	if((getDebugMode() & btIDebugDraw::DBG_NoHelpText)==0)
 	{
 		setOrthographicProjection();
@@ -1719,6 +1720,7 @@ void	SoftDemo::renderme()
 		resetPerspectiveProjection();
 		glEnable(GL_LIGHTING);
 	}
+#endif
 
 	DemoApplication::renderme();
 

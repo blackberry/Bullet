@@ -58,6 +58,11 @@ subject to the following restrictions:
 
 #include "GlutStuff.h"
 
+#ifdef __QNX__
+#include <limits.h>
+#include <unistd.h>
+#endif
+
 
 btVector3	centroid=btVector3(0,0,0);
 btVector3   convexDecompositionObjectOffset(10,0,0);
@@ -180,6 +185,16 @@ void ConvexDecompositionDemo::initPhysics(const char* filename)
 		//cmake generated msvc files need 4 levels deep back... so make a 3rd attempt...
 		tcount = wo.loadObj("../../../../file.obj");
 	}
+#ifdef __QNX__
+	if (!tcount)
+	{
+	    //when running this app on QNX, the file is packaged in with the application, so make a 4th attempt...
+	    char objFilename[PATH_MAX];
+	    snprintf(objFilename, PATH_MAX, "app/native/%s", filename);
+
+	    tcount = wo.loadObj(objFilename);
+	}
+#endif
 
 
 	
@@ -427,7 +442,11 @@ void ConvexDecompositionDemo::initPhysics(const char* filename)
 		//-----------------------------------
 
 		char outputFileName[512];
-  		strcpy(outputFileName,filename);
+#ifdef __QNX__
+        snprintf(outputFileName, PATH_MAX, "app/native/%s", filename);
+#else
+   		strcpy(outputFileName,filename);
+#endif
   		char *dot = strstr(outputFileName,".");
   		if ( dot ) 
 			*dot = 0;
@@ -505,7 +524,11 @@ void ConvexDecompositionDemo::initPhysics(const char* filename)
 		myHACD.Compute();
 		nClusters = myHACD.GetNClusters();	
 
+#ifdef __QNX__
+		myHACD.Save("app/native/output.wrl", false);
+#else
 		myHACD.Save("output.wrl", false);
+#endif
 
 
 		//convexDecomposition.performConvexDecomposition(desc);
@@ -614,7 +637,11 @@ void ConvexDecompositionDemo::initPhysics(const char* filename)
 	btDefaultSerializer*	serializer = new btDefaultSerializer(maxSerializeBufferSize);
 	m_dynamicsWorld->serialize(serializer);
 	
+#ifdef __QNX__
+	FILE* f2 = fopen("app/native/testFile.bullet","wb");
+#else
 	FILE* f2 = fopen("testFile.bullet","wb");
+#endif
 	fwrite(serializer->getBufferPointer(),serializer->getCurrentBufferSize(),1,f2);
 	fclose(f2);
 
@@ -631,7 +658,11 @@ void ConvexDecompositionDemo::initPhysics(const char* filename)
 	btBulletWorldImporter* fileLoader = new btBulletWorldImporter(m_dynamicsWorld);
 	//fileLoader->setVerboseMode(true);
 
+#ifdef __QNX__
+	fileLoader->loadFile("app/native/testFile.bullet");
+#else
 	fileLoader->loadFile("testFile.bullet");
+#endif
 	//fileLoader->loadFile("testFile64Double.bullet");
 	//fileLoader->loadFile("testFile64Single.bullet");
 	//fileLoader->loadFile("testFile32Single.bullet");

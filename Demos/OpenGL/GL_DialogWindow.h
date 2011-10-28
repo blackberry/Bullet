@@ -38,8 +38,14 @@ class btCollisionObject;
 #include <GL/gl.h>
 #include <GL/glu.h>
 #else
+#ifdef __QNX__
+#include <GLES/gl.h>
+#include <GLES/glext.h>
+#include "gleswrappers.h"
+#else
 #include <GL/gl.h>
 #include <GL/glut.h>
+#endif
 #endif
 #endif
 

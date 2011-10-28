@@ -19,6 +19,11 @@ subject to the following restrictions:
 #include "GLDebugDrawer.h"
 #include "btBulletDynamicsCommon.h"
 
+#ifdef __QNX__
+#include <limits.h>
+#include <unistd.h>
+#endif
+
 char* makeExeToBspFilename(const char* lpCmdLine);
 char* getLastFileName();
 
@@ -28,6 +33,9 @@ int main(int argc,char** argv)
 
 	BspDemo* bspDemo = new BspDemo();
 
+#ifdef __QNX__
+    const char* bspfilename = "app/native/BspDemo.bsp";
+#else
 	const char* bspfilename = "BspDemo.bsp";
 
 	printf("argc=%i\n",argc);
@@ -44,6 +52,7 @@ int main(int argc,char** argv)
 	{
 		bspfilename = argv[1];
 	}
+#endif
 
 	GLDebugDrawer	gDebugDrawer;
 

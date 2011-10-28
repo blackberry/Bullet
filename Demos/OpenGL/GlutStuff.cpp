@@ -13,7 +13,7 @@ subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef _WINDOWS
+#if !defined(_WINDOWS) && !defined(__QNX__)
 
 #include "DemoApplication.h"
 
@@ -117,4 +117,4 @@ CGLSetParameter(cgl_context, kCGLCPSwapInterval, &swap_interval);
 }
 
 
-#endif //_WINDOWS
+#endif //_WINDOWS, __QNX__

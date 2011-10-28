@@ -444,6 +444,7 @@ void ForkLiftDemo::renderme()
 	int xStart = m_glutScreenWidth - lineWidth;
 	int yStart = 20;
 
+#ifndef __QNX__
 	if((getDebugMode() & btIDebugDraw::DBG_NoHelpText)==0)
 	{
 		setOrthographicProjection();
@@ -472,11 +473,52 @@ void ForkLiftDemo::renderme()
 		resetPerspectiveProjection();
 		glEnable(GL_LIGHTING);
 	}
+#endif
 	DemoApplication::renderme();
 }
 
 void ForkLiftDemo::clientMoveAndDisplay()
 {
+#ifdef __QNX__
+    // Simulate arrow key input using the accelerometer.
+    static float threshold = 0.3;
+    static float pitch, roll, x, y, lx = 0, ly = 0;
+    getAccelerometerPitchAndRoll(&pitch, &roll);
+
+    x = -sinf(2.0f * MATH_DEG_TO_RAD(roll));
+    y = -sinf(2.0f * MATH_DEG_TO_RAD(pitch));
+
+    // Negate the pitch input when operating the fork.
+    if (_modifier)
+        y = -y;
+
+    if (x > threshold)
+        specialKeyboard(GLUT_KEY_RIGHT, 0, 0);
+    else if (x < -threshold)
+        specialKeyboard(GLUT_KEY_LEFT, 0, 0);
+    else
+    {
+        if (lx > threshold)
+            specialKeyboardUp(GLUT_KEY_RIGHT, 0, 0);
+        else if (lx < -threshold)
+            specialKeyboardUp(GLUT_KEY_LEFT, 0, 0);
+    }
+
+    if (y > threshold)
+        specialKeyboard(GLUT_KEY_UP, 0, 0);
+    else if (y < -threshold)
+        specialKeyboard(GLUT_KEY_DOWN, 0, 0);
+    else
+    {
+        if (ly > threshold)
+            specialKeyboardUp(GLUT_KEY_UP, 0, 0);
+        else if (ly < -threshold)
+            specialKeyboardUp(GLUT_KEY_DOWN, 0, 0);
+    }
+
+    lx = x;
+    ly = y;
+#endif
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
 
@@ -863,3 +905,35 @@ void ForkLiftDemo::lockForkSlider(void)
 	}
 	return;
 } // ForkLiftDemo::lockForkSlider()
+
+#ifdef __QNX__
+void ForkLiftDemo::keyboardCallback(unsigned char key, int x, int y)
+{
+    switch (key)
+    {
+        case ',':
+            if (_modifier == GLUT_ACTIVE_SHIFT)
+                _modifier = 0;
+            else
+                _modifier = GLUT_ACTIVE_SHIFT;
+
+            break;
+        case 'k':
+        {
+            int oldModifier = _modifier;
+            _modifier = 0;
+            specialKeyboard(GLUT_KEY_F5, 0, 0);
+            _modifier = oldModifier;
+            break;
+        }
+        default:
+            DemoApplication::keyboardCallback(key, x, y);
+            break;
+    }
+}
+
+int ForkLiftDemo::glutGetModifiers()
+{
+    return _modifier;
+}
+#endif

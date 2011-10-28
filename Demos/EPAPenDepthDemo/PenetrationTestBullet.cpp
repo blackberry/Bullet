@@ -13,7 +13,13 @@
 #include <OpenGL/glu.h>
 #include <GLUT/glut.h>
 #else
+
+#ifdef __QNX__
+#include "QnxDemoApplication.h"
+#include "GlutStuff.h"
+#else
 #include <GL/glut.h>
+#endif
 #endif
 
 
@@ -48,6 +54,50 @@
 #include "BulletCollision/NarrowPhaseCollision/btGjkEpa2.h"
 #endif //USE_ORIGINAL
 
+#ifdef __QNX__
+class MyConvex;
+
+class EPAPenDepthDemo : public QnxDemoApplication
+{
+public:
+    EPAPenDepthDemo();
+
+    void setOrthographicProjection();
+    bool TestEPA(const MyConvex& hull0, const MyConvex& hull1);
+    void keyboardCallback(unsigned char key, int x, int y);
+    void specialKeyboard(int key, int x, int y);
+    void mouseFunc(int button, int state, int x, int y);
+    void mouseMotionFunc(int x, int y);
+    void clientMoveAndDisplay();
+    void myinit();
+    void initPhysics();
+
+private:
+    bool gRefMode;
+    int gMethod;
+    int gLastUsedMethod;
+    int gNumGjkIterations;
+    int gLastDegenerateSimplex;
+
+    const float gDisp;
+    const float gCamSpeed;
+    btVector3 Eye;
+    btVector3 Dir;
+    btVector3 N;
+    int mx;
+    int my;
+    int glutScreenHeight;
+    int glutScreenWidth;
+};
+
+EPAPenDepthDemo::EPAPenDepthDemo()
+    : gRefMode(false), gMethod(0), gLastUsedMethod(-1), gNumGjkIterations(-1),
+      gLastDegenerateSimplex(-1), gDisp(0.01f), gCamSpeed(0.1f), Eye(3.0616338f, 1.1985892f, 2.5769043f),
+      Dir(-0.66853905,-0.14004262,-0.73037237), mx(0), my(0), glutScreenHeight(512), glutScreenWidth(512)
+{
+
+}
+#else
 static bool gRefMode = false;
 static int gMethod = 0;
 static int gLastUsedMethod = -1;
@@ -63,6 +113,7 @@ static int mx = 0;
 static int my = 0;
 static int glutScreenHeight = 512;
 static int glutScreenWidth = 512;
+#endif
 
 static void DrawLine(const btVector3& p0, const btVector3& p1, const btVector3& color, float line_width)
 {
@@ -178,7 +229,11 @@ bool MyConvex::LoadFromFile(const char* filename)
 
 
 //See http://www.lighthouse3d.com/opengl/glut/index.php?bmpfontortho
-static void setOrthographicProjection() 
+#ifdef __QNX__
+void EPAPenDepthDemo::setOrthographicProjection()
+#else
+static void setOrthographicProjection()
+#endif
 {
 
 	// switch to projection mode
@@ -301,7 +356,11 @@ static float gDepth;
 //2 Mb by default, could be made smaller
 btStackAlloc gStackAlloc(1024*1024*2);
 
+#ifdef __QNX__
+bool EPAPenDepthDemo::TestEPA(const MyConvex& hull0, const MyConvex& hull1)
+#else
 static bool TestEPA(const MyConvex& hull0, const MyConvex& hull1)
+#endif
 {
 	static btSimplexSolverInterface simplexSolver;
 #ifdef COMPARE_WITH_SOLID35_AND_OTHER_EPA
@@ -500,7 +559,11 @@ static bool ReferenceCode(const MyConvex& hull0, const MyConvex& hull1, float& d
 static MyConvex gConvex0;
 static MyConvex gConvex1;
 
+#ifdef __QNX__
+void EPAPenDepthDemo::keyboardCallback(unsigned char key, int x, int y)
+#else
 static void KeyboardCallback(unsigned char key, int x, int y)
+#endif
 {
 	switch (key)
 	{
@@ -556,12 +619,23 @@ static void KeyboardCallback(unsigned char key, int x, int y)
 	}
 }
 
+#ifdef __QNX__
+void EPAPenDepthDemo::specialKeyboard(int key, int x, int y)
+{
+    keyboardCallback(key, x, y);
+}
+#else
 static void ArrowKeyCallback(int key, int x, int y)
 {
 	KeyboardCallback(key,x,y);
 }
-	
+#endif
+
+#ifdef __QNX__
+void EPAPenDepthDemo::mouseFunc(int button, int state, int x, int y)
+#else
 static void MouseCallback(int button, int state, int x, int y)
+#endif
 {
 	mx = x;
 	my = y;
@@ -634,7 +708,11 @@ class NxQuat
 };
 
 
+#ifdef __QNX__
+void EPAPenDepthDemo::mouseMotionFunc(int x, int y)
+#else
 static void MotionCallback(int x, int y)
+#endif
 {
 	int dx = mx - x;
 	int dy = my - y;
@@ -651,7 +729,11 @@ static void MotionCallback(int x, int y)
 	my = y;
 }
 
+#ifdef __QNX__
+void EPAPenDepthDemo::clientMoveAndDisplay()
+#else
 static void RenderCallback()
+#endif
 {
 	// Clear buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -659,7 +741,11 @@ static void RenderCallback()
 	// Setup camera
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
+#ifdef __QNX__
+	gluPerspective(60.0f, ((float)m_glutScreenWidth)/((float)m_glutScreenHeight), 1.0f, 10000.0f);
+#else
 	gluPerspective(60.0f, ((float)glutGet(GLUT_WINDOW_WIDTH))/((float)glutGet(GLUT_WINDOW_HEIGHT)), 1.0f, 10000.0f);
+#endif
 	gluLookAt(Eye.x(), Eye.y(), Eye.z(), Eye.x() + Dir.x(), Eye.y() + Dir.y(), Eye.z() + Dir.z(), 0.0f, 1.0f, 0.0f);
 
 	glMatrixMode(GL_MODELVIEW);
@@ -782,6 +868,7 @@ static void RenderCallback()
 	glutSwapBuffers();	
 }
 
+#ifndef __QNX__
 static void ReshapeCallback(int width, int height)
 {
 	glViewport(0, 0, width, height);
@@ -791,9 +878,11 @@ static void IdleCallback()
 {
 	glutPostRedisplay();
 }
+#endif
 
 int main(int argc, char** argv)
 {
+#ifndef __QNX__
 	// Initialize Glut
 	glutInit(&argc, argv);
 	glutInitWindowSize(glutScreenWidth, glutScreenHeight);
@@ -809,6 +898,17 @@ int main(int argc, char** argv)
 	glutMotionFunc(MotionCallback);
 	MotionCallback(0,0);
 
+#else
+	EPAPenDepthDemo demo;
+	demo.initPhysics();
+
+	return glutmain(argc, argv, 1024, 600, "EPA Pen Depth Demo", &demo);
+}
+
+void EPAPenDepthDemo::myinit()
+{
+#endif
+
 	// Setup default render states
 	glClearColor(0.3f, 0.4f, 0.5f, 1.0);
 	glEnable(GL_DEPTH_TEST);
@@ -823,6 +923,27 @@ int main(int argc, char** argv)
 	float Position[] = { -10.0f, 1000.0f, -4.0f, 1.0f };	glLightfv(GL_LIGHT0, GL_POSITION, Position);
 	glEnable(GL_LIGHT0);
 
+#ifdef __QNX__
+}
+
+void EPAPenDepthDemo::initPhysics()
+{
+    bool Status = gConvex0.LoadFromFile("app/native/convex0.bin");
+    if(!Status)
+    {
+        printf("Failed to load object!\n");
+        exit(0);
+    }
+    Status = gConvex1.LoadFromFile("app/native/convex0.bin");
+    if(!Status)
+    {
+        printf("Failed to load object!\n");
+        exit(0);
+    }
+
+    gConvex0.mTransform.setOrigin(btVector3(0.20000069f, 0.95000005f, 0.0f));
+}
+#else
 	//
 	bool Status = gConvex0.LoadFromFile("convex0.bin");
 	if(!Status)
@@ -853,3 +974,4 @@ int main(int argc, char** argv)
 
 	return 0;
 }
+#endif

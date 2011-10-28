@@ -1,5 +1,5 @@
 
-#ifndef _WINDOWS
+#if !defined(_WINDOWS) && !defined(__QNX__)
 
 #include "GlutDemoApplication.h"
 
@@ -82,6 +82,6 @@ void GlutDemoApplication::swapBuffers()
 
 }
 
-#endif //_WINDOWS
+#endif //_WINDOWS, __QNX__
 
 

@@ -104,10 +104,72 @@ static btScalar TaruVtx[] = {
 #include <OpenGL/glu.h>
 #include <GLUT/glut.h>
 #else
+#ifdef __QNX__
+#include <string.h>
+#include "QnxDemoApplication.h"
+#else
 #include <GL/glut.h>
+#endif
 #endif
 #include "GlutStuff.h"
 
+
+#ifdef __QNX__
+class ConvexHullDistanceDemo : public QnxDemoApplication
+{
+public:
+    ConvexHullDistanceDemo();
+    virtual ~ConvexHullDistanceDemo();
+
+    void clientResetScene();
+    void updateCamera();
+    void clientDisplay();
+    void clientMoveAndDisplay();
+    void reshape(int w, int h);
+    void initPhysics();
+
+private:
+    float yaw, pitch, roll;
+    const int maxNumObjects;
+    const int numObjects;
+    GL_Simplex1to4 simplex;
+    btConvexShape** shapePtr;
+    btTransform* tr;
+    int debugMode;
+    GL_ShapeDrawer shapeDrawer;
+    int m_glutScreenWidth;
+    int m_glutScreenHeight;
+    float m_frustumZNear;
+    float m_frustumZFar;
+    bool m_ortho;
+};
+
+ConvexHullDistanceDemo::ConvexHullDistanceDemo()
+    : yaw(0.0f), pitch(0.0f), roll(0.0f), maxNumObjects(4), numObjects(2),
+      debugMode(btIDebugDraw::DBG_DrawWireframe), m_glutScreenWidth(0),
+      m_glutScreenHeight(0), m_frustumZNear(1.0f), m_frustumZFar(10000.0f), m_ortho(false)
+{
+    shapePtr = new btConvexShape*[maxNumObjects];
+    memset(shapePtr, 0, sizeof(btConvexShape*) * maxNumObjects);
+    tr = new btTransform[numObjects];
+}
+
+ConvexHullDistanceDemo::~ConvexHullDistanceDemo()
+{
+    if (shapePtr)
+    {
+        for (int i = 0; i < numObjects; i++)
+        {
+            if (shapePtr[i])
+                delete shapePtr[i];
+        }
+        delete[] shapePtr;
+    }
+
+    if (tr)
+        delete[] tr;
+}
+#else
 
 float yaw=0.f,pitch=0.f,roll=0.f;
 const int maxNumObjects = 4;
@@ -120,13 +182,19 @@ btConvexShape*	shapePtr[maxNumObjects];
 btTransform tr[numObjects];
 int screenWidth = 640.f;
 int screenHeight = 480.f;
+#endif
 
+#ifdef __QNX__
+void ConvexHullDistanceDemo::clientResetScene()
+#else
 void clientResetScene()
+#endif
 {
 	tr[0].setOrigin(btVector3(0.0f,3.f,7.f));
 	tr[1].setOrigin(btVector3(0.0f,9.f,2.f));
 }
 
+#ifndef __QNX__
 int debugMode = btIDebugDraw::DBG_DrawWireframe;
 GL_ShapeDrawer shapeDrawer;
 int m_glutScreenWidth=0;
@@ -136,9 +204,13 @@ float m_frustumZFar = 10000.f;
 bool m_ortho = false;
 
 int myglutmain(int argc, char **argv,int width,int height,const char* title);
+#endif
 
-
+#ifdef __QNX__
+void ConvexHullDistanceDemo::updateCamera() {
+#else
 void updateCamera() {
+#endif
 
 
 	glMatrixMode(GL_PROJECTION);
@@ -231,6 +303,17 @@ void updateCamera() {
 
 int main(int argc,char** argv)
 {
+
+#ifdef __QNX__
+    ConvexHullDistanceDemo demo;
+    demo.initPhysics();
+
+    return glutmain(argc, argv, 1024, 600,"Convex Hull Distance Demo", &demo);
+}
+
+void ConvexHullDistanceDemo::initPhysics()
+{
+#endif
 	clientResetScene();
 
 	btMatrix3x3 basisA;
@@ -245,19 +328,27 @@ int main(int argc,char** argv)
 	btVector3	points0[3]={btVector3(1,0,0),btVector3(0,1,0),btVector3(0,0,1)};
 	//btVector3	points1[5]={btVector3(1,0,0),btVector3(0,1,0),btVector3(0,0,1),btVector3(0,0,-1),btVector3(-1,-1,0)};
 	
+#ifdef __QNX__
+    shapePtr[0] = new btConvexHullShape(&points0[0].getX(),3);
+    shapePtr[1] = new btConvexHullShape(TaruVtx,TaruVtxCount,3*sizeof(btScalar));
+#else
 	btConvexHullShape	hullA(&points0[0].getX(),3);
 	btConvexHullShape	hullB(TaruVtx,TaruVtxCount,3*sizeof(btScalar));
 	
 	shapePtr[0] = &hullA;
 	shapePtr[1] = &hullB;
+#endif
 	
 
 	btTransform tr;
 	tr.setIdentity();
 
-
+#ifdef __QNX__
+}
+#else
 	return myglutmain(argc, argv,screenWidth,screenHeight,"Convex Hull Distance Demo");
 }
+#endif
 
 
 static btVoronoiSimplexSolver sGjkSimplexSolver;
@@ -266,7 +357,11 @@ btSimplexSolverInterface& gGjkSimplexSolver = sGjkSimplexSolver;
 #include <stdio.h>
 
 
+#ifdef __QNX__
+void ConvexHullDistanceDemo::clientDisplay() {
+#else
 void clientDisplay(void) {
+#endif
 
 
 	updateCamera();
@@ -435,18 +530,26 @@ void clientDisplay(void) {
     glutSwapBuffers();
 }
 
+#ifdef __QNX__
+void ConvexHullDistanceDemo::clientMoveAndDisplay()
+#else
 void clientMoveAndDisplay()
+#endif
 {
 	clientDisplay();
 }
 
+#ifdef __QNX__
+void ConvexHullDistanceDemo::reshape(int w, int h)
+#else
 static void glutReshapeCallback(int w, int h)
+#endif
 {
 	m_glutScreenWidth=w;
 	m_glutScreenHeight=h;
 }
 
-
+#ifndef __QNX__
 int myglutmain(int argc, char **argv,int width,int height,const char* title) {
     
 
@@ -506,3 +609,4 @@ CGLSetParameter(cgl_context, kCGLCPSwapInterval, &swap_interval);
     glutMainLoop();
     return 0;
 }
+#endif

@@ -78,6 +78,7 @@ void CcdPhysicsDemo::clientMoveAndDisplay()
 
 void CcdPhysicsDemo::displayText()
 {
+#ifndef __QNX__
 	int lineWidth=440;
 	int xStart = m_glutScreenWidth - lineWidth;
 	int yStart = 20;
@@ -125,7 +126,7 @@ void CcdPhysicsDemo::displayText()
 		resetPerspectiveProjection();
 		glEnable(GL_LIGHTING);
 	}	
-
+#endif
 }
 
 

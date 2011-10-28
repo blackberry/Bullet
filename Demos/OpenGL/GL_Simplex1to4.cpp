@@ -19,6 +19,8 @@ subject to the following restrictions:
 #include <windows.h>
 #endif
 
+#ifndef __QNX__
+
 //think different
 #if defined(__APPLE__) && !defined (VMDMESA)
 #include <OpenGL/gl.h>
@@ -26,6 +28,9 @@ subject to the following restrictions:
 #else
 #include <GL/gl.h>
 #endif
+
+#endif // __QNX__
+
 #include "GlutStuff.h"
 #include "LinearMath/btTransform.h"
 

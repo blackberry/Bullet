@@ -101,8 +101,10 @@ void	GLDebugDrawer::setDebugMode(int debugMode)
 
 void	GLDebugDrawer::draw3dText(const btVector3& location,const char* textString)
 {
+#ifndef __QNX__
 	glRasterPos3f(location.x(),  location.y(),  location.z());
 	//BMF_DrawString(BMF_GetFont(BMF_kHelvetica10),textString);
+#endif
 }
 
 void	GLDebugDrawer::reportErrorWarning(const char* warningString)

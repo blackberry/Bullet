@@ -256,8 +256,10 @@ void	GL_DialogWindow::restoreOpenGLState()
     glPopMatrix();
     glMatrixMode(GL_TEXTURE);
     glPopMatrix();
+#ifndef __QNX__
     glPopClientAttrib();
     glPopAttrib();
+#endif
 
 }
 
