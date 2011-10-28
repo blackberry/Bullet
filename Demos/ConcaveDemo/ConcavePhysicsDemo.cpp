@@ -221,13 +221,21 @@ void	ConcaveDemo::initPhysics()
 	trimeshShape->serializeSingleBvh(serializer);
 #endif
 	serializer->finishSerialization();
+#ifdef __QNX__
+	FILE* f2 = fopen("app/native/myShape.bullet","wb");
+#else
 	FILE* f2 = fopen("myShape.bullet","wb");
+#endif
 	fwrite(serializer->getBufferPointer(),serializer->getCurrentBufferSize(),1,f2);
 	fclose(f2);
 
 #else
 	btBulletWorldImporter import(0);//don't store info into the world
-	if (import.loadFile("myShape.bullet"))
+#ifdef __QNX__
+	if (import.loadFile("app/native/myShape.bullet"))
+#else
+    if (import.loadFile("myShape.bullet"))
+#endif
 	{
 		int numBvh = import.getNumBvhs();
 		if (numBvh)

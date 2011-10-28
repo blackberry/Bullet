@@ -524,7 +524,11 @@ void	SerializeDemo::initPhysics()
 #endif //DESERIALIZE_SOFT_BODIES
 //	fileLoader->setVerboseMode(true);
 
+#ifdef __QNX__
+	if (!m_fileLoader->loadFile("app/native/testFile.bullet"))
+#else
 	if (!m_fileLoader->loadFile("testFile.bullet"))
+#endif
 //	if (!m_fileLoader->loadFile("../SoftDemo/testFile.bullet"))
 	{
 		///create a few basic rigid bodies and save them to testFile.bullet
@@ -643,7 +647,11 @@ void	SerializeDemo::initPhysics()
 
 		m_dynamicsWorld->serialize(serializer);
 		
+#ifdef __QNX__
+		FILE* f2 = fopen("app/native/testFile.bullet","wb");
+#else
 		FILE* f2 = fopen("testFile.bullet","wb");
+#endif
 		fwrite(serializer->getBufferPointer(),serializer->getCurrentBufferSize(),1,f2);
 		fclose(f2);
 	}

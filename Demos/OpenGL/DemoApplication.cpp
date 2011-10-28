@@ -1050,8 +1050,10 @@ extern CProfileIterator * m_profileIterator;
 
 void DemoApplication::displayProfileString(int xOffset,int yStart,char* message)
 {
+#ifndef __QNX__
 	glRasterPos3f(btScalar(xOffset),btScalar(yStart),btScalar(0));
 	GLDebugDrawString(xOffset,yStart,message);
+#endif
 }
 
 
@@ -1227,8 +1229,10 @@ void DemoApplication::renderme()
 			renderscene(1);
 			glFrontFace(GL_CCW);
 
+#ifndef __QNX__
 			glPolygonMode(GL_FRONT,GL_FILL);
 			glPolygonMode(GL_BACK,GL_FILL);
+#endif
 			glShadeModel(GL_SMOOTH);
 			glEnable(GL_DEPTH_TEST);
 			glDepthFunc(GL_LESS);

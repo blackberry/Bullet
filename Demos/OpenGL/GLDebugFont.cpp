@@ -40,8 +40,14 @@ subject to the following restrictions:
 #include <GL/gl.h>
 #include <GL/glu.h>
 #else
+#ifdef __QNX__
+#include <GLES/gl.h>
+#include <GLES/glext.h>
+#include "gleswrappers.h"
+#else
 #include <GL/gl.h>
 #include <GL/glut.h>
+#endif
 #endif
 #endif
 
@@ -103,9 +109,11 @@ void	GLDebugDrawStringInternal(int x,int y,const char* string, const btVector3& 
 		glMatrixMode(GL_TEXTURE);
 		glLoadIdentity();
 
+#ifndef __QNX__
 		glDisable(GL_TEXTURE_GEN_S);
 		glDisable(GL_TEXTURE_GEN_T);
 		glDisable(GL_TEXTURE_GEN_R);
+#endif
 
 		glEnable(GL_TEXTURE_2D);
 		glBlendFunc(GL_SRC_ALPHA,GL_ONE);

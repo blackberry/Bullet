@@ -17,6 +17,11 @@ subject to the following restrictions:
 #ifndef GLUT_DEMO_APPLICATION_H
 #define GLUT_DEMO_APPLICATION_H
 
+#ifdef __QNX__
+#include "QnxDemoApplication.h"
+#define GlutDemoApplication QnxDemoApplication
+#else
+
 #include "DemoApplication.h"
 
 class GlutDemoApplication : public DemoApplication
@@ -30,5 +35,8 @@ public:
 	virtual	void	updateModifierKeys();
 
 };
+
+#endif // __QNX__
+
 #endif //GLUT_DEMO_APPLICATION_H
 

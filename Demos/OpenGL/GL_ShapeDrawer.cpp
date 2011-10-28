@@ -244,6 +244,11 @@ public:
 			glVertex3d(triangle[2].getX(), triangle[2].getY(), triangle[2].getZ());
 			glVertex3d(triangle[1].getX(), triangle[1].getY(), triangle[1].getZ());
 			glVertex3d(triangle[0].getX(), triangle[0].getY(), triangle[0].getZ());
+
+#ifdef __QNX__
+            if (glIsEnabled(GL_TEXTURE_2D) == GL_TRUE)
+			    genTexCoords();
+#endif
 			glEnd();
 		}
 	}
@@ -268,7 +273,12 @@ public:
 		glColor3f(0, 0, 1);
 		glVertex3d(triangle[2].getX(), triangle[2].getY(), triangle[2].getZ());
 		glVertex3d(triangle[0].getX(), triangle[0].getY(), triangle[0].getZ());
-		glEnd();
+		
+#ifdef __QNX__
+        if (glIsEnabled(GL_TEXTURE_2D) == GL_TRUE)
+			genTexCoords();
+#endif
+        glEnd();
 	}
 };
 
@@ -303,6 +313,9 @@ void GL_ShapeDrawer::drawCylinder(float radius,float halfHeight, int upAxis)
 {
 
 
+#ifdef __QNX__
+    // TODO: Not currently supported.
+#else
 	glPushMatrix();
 	switch (upAxis)
 	{
@@ -343,6 +356,7 @@ void GL_ShapeDrawer::drawCylinder(float radius,float halfHeight, int upAxis)
 
 	glPopMatrix();
 	gluDeleteQuadric(quadObj);
+#endif
 }
 
 GL_ShapeDrawer::ShapeCache*		GL_ShapeDrawer::cache(btConvexShape* shape)
@@ -515,11 +529,19 @@ void GL_ShapeDrawer::drawOpenGL(btScalar* m, const btCollisionShape* shape, cons
 			glGenTextures(1,(GLuint*)&m_texturehandle);
 			glBindTexture(GL_TEXTURE_2D,m_texturehandle);
 			glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_MODULATE);
-			glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
-			glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR_MIPMAP_LINEAR);
+#ifdef __QNX__
+			glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+			glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
 			glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
 			glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 256, 256, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+#else
+			glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
+            glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR_MIPMAP_LINEAR);
+            glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
+            glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
 			gluBuild2DMipmaps(GL_TEXTURE_2D,3,256,256,GL_RGB,GL_UNSIGNED_BYTE,image);
+#endif
 			delete[] image;
 	
 			
@@ -530,6 +552,7 @@ void GL_ShapeDrawer::drawOpenGL(btScalar* m, const btCollisionShape* shape, cons
 		glScalef(0.025f,0.025f,0.025f);
 		glMatrixMode(GL_MODELVIEW);
 
+#ifndef __QNX__
 		static const GLfloat	planex[]={1,0,0,0};
 		//	static const GLfloat	planey[]={0,1,0,0};
 			static const GLfloat	planez[]={0,0,1,0};
@@ -540,6 +563,7 @@ void GL_ShapeDrawer::drawOpenGL(btScalar* m, const btCollisionShape* shape, cons
 			glEnable(GL_TEXTURE_GEN_S);
 			glEnable(GL_TEXTURE_GEN_T);
 			glEnable(GL_TEXTURE_GEN_R);
+#endif
 			m_textureinitialized=true;
 
 		
@@ -626,6 +650,10 @@ void GL_ShapeDrawer::drawOpenGL(btScalar* m, const btCollisionShape* shape, cons
 						glVertex3f (v3.x(), v3.y(), v3.z());
 						
 					}
+#ifdef __QNX__
+					if(m_textureenabled)
+                        genTexCoords();
+#endif
 					glEnd();
 #endif
 
@@ -757,6 +785,10 @@ void GL_ShapeDrawer::drawOpenGL(btScalar* m, const btCollisionShape* shape, cons
 									}
 								}
 							}
+#ifdef __QNX__
+							if(m_textureenabled)
+							    genTexCoords();
+#endif
 							glEnd ();
 						} else
 						{
@@ -799,6 +831,10 @@ void GL_ShapeDrawer::drawOpenGL(btScalar* m, const btCollisionShape* shape, cons
 									glVertex3f (v3.x(), v3.y(), v3.z());
 
 								}
+#ifdef __QNX__
+								if(m_textureenabled)
+                                    genTexCoords();
+#endif
 								glEnd ();
 
 							}

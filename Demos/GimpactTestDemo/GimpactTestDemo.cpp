@@ -158,7 +158,7 @@ void GimpactConcaveDemo::renderme()
 			m_shapeDrawer->drawOpenGL(m,colObj->getCollisionShape(),wireColor,getDebugMode(),worldBoundsMin,worldBoundsMax);
 		}
 
-
+#ifndef __QNX__
 			float xOffset = 10.f;
 			float yStart = 20.f;
 			float yIncr = 20.f;
@@ -256,7 +256,7 @@ void GimpactConcaveDemo::renderme()
 
 
 			resetPerspectiveProjection();
-
+#endif // __QNX__
 
 	}
 
