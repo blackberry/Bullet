@@ -21,6 +21,7 @@
 #include <hacdHACD.h>
 #include <hacdICHull.h>
 #include <string.h>
+#include <stdio.h>
 #include <algorithm>
 #include <iterator>
 #include <limits>

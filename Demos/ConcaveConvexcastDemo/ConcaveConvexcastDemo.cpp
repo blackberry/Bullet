@@ -208,7 +208,47 @@ public:
 			glMultMatrixf (&m[0]);
 			glScalef (2.0 * boxShapeHalfExtents[0], 2.0 * boxShapeHalfExtents[1], 2.0 * boxShapeHalfExtents[2]);
 #endif //BT_USE_DOUBLE_PRECISION
+#ifdef __QNX__
+			glBegin( GL_QUADS );
+                glNormal3f( 1.0, 0.0, 0.0);
+                glVertex3f(+0.5,-0.5,+0.5);
+                glVertex3f(+0.5,-0.5,-0.5);
+                glVertex3f(+0.5,+0.5,-0.5);
+                glVertex3f(+0.5,+0.5,+0.5);
+
+                glNormal3f( 0.0, 1.0, 0.0);
+                glVertex3f(+0.5,+0.5,+0.5);
+                glVertex3f(+0.5,+0.5,-0.5);
+                glVertex3f(-0.5,+0.5,-0.5);
+                glVertex3f(-0.5,+0.5,+0.5);
+
+                glNormal3f( 0.0, 0.0, 1.0);
+                glVertex3f(+0.5,+0.5,+0.5);
+                glVertex3f(-0.5,+0.5,+0.5);
+                glVertex3f(-0.5,-0.5,+0.5);
+                glVertex3f(+0.5,-0.5,+0.5);
+
+                glNormal3f(-1.0, 0.0, 0.0);
+                glVertex3f(-0.5,-0.5,+0.5);
+                glVertex3f(-0.5,+0.5,+0.5);
+                glVertex3f(-0.5,+0.5,-0.5);
+                glVertex3f(-0.5,-0.5,-0.5);
+
+                glNormal3f( 0.0,-1.0, 0.0);
+                glVertex3f(-0.5,-0.5,+0.5);
+                glVertex3f(-0.5,-0.5,-0.5);
+                glVertex3f(+0.5,-0.5,-0.5);
+                glVertex3f(+0.5,-0.5,+0.5);
+
+                glNormal3f( 0.0, 0.0,-1.0);
+                glVertex3f(-0.5,-0.5,-0.5);
+                glVertex3f(-0.5,+0.5,-0.5);
+                glVertex3f(+0.5,+0.5,-0.5);
+                glVertex3f(+0.5,-0.5,-0.5);
+            glEnd();
+#else
 			glutSolidCube (1.0);
+#endif
 		glPopMatrix ();
 	}
 
@@ -223,6 +263,9 @@ public:
 			glVertex3f (source[i][0], source[i][1], source[i][2]);
 			glVertex3f (hit_com[i][0], hit_com[i][1], hit_com[i][2]);
 		}
+#ifdef __QNX__
+        glEnd();
+#endif
 		glColor3f (1.0, 1.0, 1.0);
 		glBegin (GL_LINES);
 		btScalar normal_scale = 10.0; // easier to see if this is big

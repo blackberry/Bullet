@@ -288,7 +288,11 @@ void	InternalEdgeDemo::initPhysics()
 	buffer = btAlignedAlloc(numBytes,16);
 	bool swapEndian = false;
 	trimeshShape->getOptimizedBvh()->serialize(buffer,numBytes,swapEndian);
+#ifdef __QNX__
+	FILE* file = fopen("app/native/bvh.bin","wb");
+#else
 	FILE* file = fopen("bvh.bin","wb");
+#endif
 	fwrite(buffer,1,numBytes,file);
 	fclose(file);
 	btAlignedFree(buffer);
@@ -299,7 +303,11 @@ void	InternalEdgeDemo::initPhysics()
 
 	trimeshShape  = new btBvhTriangleMeshShape(m_indexVertexArrays,useQuantizedAabbCompression,false);
 
+#ifdef __QNX__
+	char* fileName = "app/native/bvh.bin";
+#else
 	char* fileName = "bvh.bin";
+#endif
 
 	FILE* file = fopen(fileName,"rb");
 	int size=0;
@@ -507,6 +515,7 @@ void InternalEdgeDemo::clientMoveAndDisplay()
 	int xStart = m_glutScreenWidth - lineWidth;
 	int yStart = 20;
 
+#ifndef __QNX__
 	if((getDebugMode() & btIDebugDraw::DBG_DrawText)!=0)
 	{
 		setOrthographicProjection();
@@ -533,6 +542,7 @@ void InternalEdgeDemo::clientMoveAndDisplay()
 		resetPerspectiveProjection();
 		glEnable(GL_LIGHTING);
 	}
+#endif
 
 	
 	renderme();

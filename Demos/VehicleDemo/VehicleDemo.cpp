@@ -428,6 +428,42 @@ void VehicleDemo::renderme()
 
 void VehicleDemo::clientMoveAndDisplay()
 {
+#ifdef __QNX__
+    // Simulate arrow key input using the accelerometer.
+    static float threshold = 0.3;
+    static float pitch, roll, x, y, lx = 0, ly = 0;
+    getAccelerometerPitchAndRoll(&pitch, &roll);
+
+    x = -sinf(2.0f * MATH_DEG_TO_RAD(roll));
+    y = -sinf(2.0f * MATH_DEG_TO_RAD(pitch));
+
+    if (x > threshold)
+        specialKeyboard(GLUT_KEY_RIGHT, 0, 0);
+    else if (x < -threshold)
+        specialKeyboard(GLUT_KEY_LEFT, 0, 0);
+    else
+    {
+        if (lx > threshold)
+            specialKeyboardUp(GLUT_KEY_RIGHT, 0, 0);
+        else if (lx < -threshold)
+            specialKeyboardUp(GLUT_KEY_LEFT, 0, 0);
+    }
+
+    if (y > threshold)
+        specialKeyboard(GLUT_KEY_UP, 0, 0);
+    else if (y < -threshold)
+        specialKeyboard(GLUT_KEY_DOWN, 0, 0);
+    else
+    {
+        if (ly > threshold)
+            specialKeyboardUp(GLUT_KEY_UP, 0, 0);
+        else if (ly < -threshold)
+            specialKeyboardUp(GLUT_KEY_DOWN, 0, 0);
+    }
+
+    lx = x;
+    ly = y;
+#endif
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
 

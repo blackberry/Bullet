@@ -111,25 +111,27 @@ Alternatively, use CMake to autogenerate a build system for Windows:
 ** QNX (from Windows) Compilation **
   - To build for the QNX platform on Windows, run cmd.exe and execute the following commands:
     > cd [bbndk]				where [bbndk] is where the QNX NDK was installed (i.e. C:\bbndk)
-    > NativeSDK-env.bat
+    > bbndk-env.bat
     > cd [bullet]/qnx			where [bullet] is the directory where Bullet was extracted to
     > make
-    Following this, the relevant binaries should reside in the following subdirectories:
-    libBulletCollision: 
-        [bullet]/qnx/BulletCollision/arm/a.le.v7     (ARM release)
-        [bullet]/qnx/BulletCollision/arm/a.le.v7.g   (ARM debug)
-        [bullet]/qnx/BulletCollision/x86/a           (x86 simulator release)
-        [bullet]/qnx/BulletCollision/x86/a.g         (x86 simulator debug)
-    libBulletDynamics: 
-        [bullet]/qnx/BulletDynamics/arm/a.le.v7      (ARM release)
-        [bullet]/qnx/BulletDynamics/arm/a.le.v7.g    (ARM debug)
-        [bullet]/qnx/BulletDynamics/x86/a            (x86 simulator release)
-        [bullet]/qnx/BulletDynamics/x86/a.g          (x86 simulator debug)
-    libLinearMath: 
-        [bullet]/qnx/LinearMath/arm/a.le.v7          (ARM release)
-        [bullet]/qnx/LinearMath/arm/a.le.v7.g        (ARM debug)
-        [bullet]/qnx/LinearMath/x86/a                (x86 simulator release)
-        [bullet]/qnx/LinearMath/x86/a.g              (x86 simulator debug)
+    Following this, the relevant binaries should reside in the following subdirectories under each
+    subdirectory of [bullet]/qnx:
+    
+    for the BulletCollision, BulletDynamics, BulletSoftBody, BulletFileLoader, BulletWorldImporter, 
+    ConvexDecomposition, HACD, and OpenGLSupport libraries:
+        arm/a.le.v7     (ARM release)
+        arm/a.le.v7.g   (ARM debug)
+        x86/a           (x86 simulator release)
+        x86/a.g         (x86 simulator debug)
+    for all of the demo programs:
+        arm/o.le.v7      (ARM release)
+        arm/o.le.v7.g    (ARM debug)
+        x86/o            (x86 simulator release)
+        x86/o.g          (x86 simulator debug)
+    
+    To build just the libraries, run 'make libs' from [bullet]/qnx and to build just the demos (note 
+    that the libraries must be built first), run 'make demos' from [bullet]/qnx. To build a particular 
+    library or demo program individually, change into its subdirectory and run 'make'.
 
 
 ** For more help, visit http://www.bulletphysics.org **
