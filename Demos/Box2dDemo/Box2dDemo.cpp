@@ -64,10 +64,8 @@ void Box2dDemo::clientMoveAndDisplay()
 		
 	renderme(); 
 
-#ifndef __QNX__
 	if (m_dialogDynamicsWorld)
 		m_dialogDynamicsWorld->draw(ms / 1000000.f);
-#endif
 
 	glFlush();
 
@@ -87,10 +85,8 @@ void Box2dDemo::displayCallback(void) {
 	if (m_dynamicsWorld)
 		m_dynamicsWorld->debugDrawWorld();
 
-#ifndef __QNX__
 	if (m_dialogDynamicsWorld)
 		m_dialogDynamicsWorld->draw(0.f);
-#endif
 
 	glFlush();
 	swapBuffers();
@@ -100,16 +96,14 @@ void Box2dDemo::displayCallback(void) {
 
 void Box2dDemo::reshape(int w, int h)
 {
-#ifndef __QNX__
 	if (m_dialogDynamicsWorld)
 		m_dialogDynamicsWorld->setScreenSize(w,h);
-#endif
 	PlatformDemoApplication::reshape(w,h);
 }
 
 void	Box2dDemo::initPhysics()
 {
-#ifndef __QNX__
+	
 	m_dialogDynamicsWorld = new GL_DialogDynamicsWorld();
 
 	//m_dialogDynamicsWorld->createDialog(100,110,200,50);
@@ -139,7 +133,6 @@ void	Box2dDemo::initPhysics()
 	txt->m_textLines.push_back("h to toggle help text");
 	txt->m_textLines.push_back("o to toggle orthogonal/perspective view");
 	//txt->m_textLines.push_back("+- shooting speed = %10.2f",m_ShootBoxInitialSpeed);
-#endif
 
 	
 	
@@ -309,10 +302,8 @@ void	Box2dDemo::initPhysics()
 
 void	Box2dDemo::exitPhysics()
 {
-#ifndef __QNX__
 	delete m_dialogDynamicsWorld;
 	m_dialogDynamicsWorld = 0;
-#endif
 
 	//cleanup in the reverse order of creation/initialization
 
@@ -352,9 +343,8 @@ void	Box2dDemo::exitPhysics()
 
 void Box2dDemo::mouseFunc(int button, int state, int x, int y)
 {
-#ifndef __QNX__
+
 	if (!m_dialogDynamicsWorld->mouseFunc(button,state,x,y))
-#endif
 	{
 		DemoApplication::mouseFunc(button,state,x,y);
 	}
@@ -362,9 +352,7 @@ void Box2dDemo::mouseFunc(int button, int state, int x, int y)
 
 void	Box2dDemo::mouseMotionFunc(int x,int y)
 {
-#ifndef __QNX__
 	m_dialogDynamicsWorld->mouseMotionFunc(x,y);
-#endif
 	DemoApplication::mouseMotionFunc(x,y);
 }
 

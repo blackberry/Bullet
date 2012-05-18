@@ -98,6 +98,7 @@ EPAPenDepthDemo::EPAPenDepthDemo()
 
 }
 #else
+
 static bool gRefMode = false;
 static int gMethod = 0;
 static int gLastUsedMethod = -1;
@@ -630,7 +631,7 @@ static void ArrowKeyCallback(int key, int x, int y)
 	KeyboardCallback(key,x,y);
 }
 #endif
-
+	
 #ifdef __QNX__
 void EPAPenDepthDemo::mouseFunc(int button, int state, int x, int y)
 #else

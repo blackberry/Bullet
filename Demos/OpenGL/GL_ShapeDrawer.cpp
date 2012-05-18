@@ -93,6 +93,11 @@ public:
 		//glColor3f(0, 1, 0);
 		glNormal3d(normal.getX(),normal.getY(),normal.getZ());
 		glVertex3d(triangle[2].getX(), triangle[2].getY(), triangle[2].getZ());
+        
+  #ifdef __QNX__
+            if (glIsEnabled(GL_TEXTURE_2D) == GL_TRUE)
+			    genTexCoords();
+#endif
 		glEnd();
 
 		/*glBegin(GL_LINES);
@@ -244,11 +249,11 @@ public:
 			glVertex3d(triangle[2].getX(), triangle[2].getY(), triangle[2].getZ());
 			glVertex3d(triangle[1].getX(), triangle[1].getY(), triangle[1].getZ());
 			glVertex3d(triangle[0].getX(), triangle[0].getY(), triangle[0].getZ());
-
-#ifdef __QNX__
-            if (glIsEnabled(GL_TEXTURE_2D) == GL_TRUE)
-			    genTexCoords();
-#endif
+            
+            #ifdef __QNX__
+                if (glIsEnabled(GL_TEXTURE_2D) == GL_TRUE)
+                    genTexCoords();
+            #endif
 			glEnd();
 		}
 	}
@@ -273,12 +278,12 @@ public:
 		glColor3f(0, 0, 1);
 		glVertex3d(triangle[2].getX(), triangle[2].getY(), triangle[2].getZ());
 		glVertex3d(triangle[0].getX(), triangle[0].getY(), triangle[0].getZ());
-		
+        
 #ifdef __QNX__
         if (glIsEnabled(GL_TEXTURE_2D) == GL_TRUE)
 			genTexCoords();
 #endif
-        glEnd();
+		glEnd();
 	}
 };
 
@@ -312,10 +317,9 @@ void GL_ShapeDrawer::drawSphere(btScalar radius, int lats, int longs)
 void GL_ShapeDrawer::drawCylinder(float radius,float halfHeight, int upAxis)
 {
 
-
-#ifdef __QNX__
+    #ifdef __QNX__
     // TODO: Not currently supported.
-#else
+    #else
 	glPushMatrix();
 	switch (upAxis)
 	{
@@ -356,7 +360,8 @@ void GL_ShapeDrawer::drawCylinder(float radius,float halfHeight, int upAxis)
 
 	glPopMatrix();
 	gluDeleteQuadric(quadObj);
-#endif
+    
+    #endif
 }
 
 GL_ShapeDrawer::ShapeCache*		GL_ShapeDrawer::cache(btConvexShape* shape)
@@ -554,19 +559,18 @@ void GL_ShapeDrawer::drawOpenGL(btScalar* m, const btCollisionShape* shape, cons
 
 #ifndef __QNX__
 		static const GLfloat	planex[]={1,0,0,0};
-		//	static const GLfloat	planey[]={0,1,0,0};
-			static const GLfloat	planez[]={0,0,1,0};
-			glTexGenfv(GL_S,GL_OBJECT_PLANE,planex);
-			glTexGenfv(GL_T,GL_OBJECT_PLANE,planez);
-			glTexGeni(GL_S,GL_TEXTURE_GEN_MODE,GL_OBJECT_LINEAR);
-			glTexGeni(GL_T,GL_TEXTURE_GEN_MODE,GL_OBJECT_LINEAR);
-			glEnable(GL_TEXTURE_GEN_S);
-			glEnable(GL_TEXTURE_GEN_T);
-			glEnable(GL_TEXTURE_GEN_R);
+    //	static const GLfloat	planey[]={0,1,0,0};
+        static const GLfloat	planez[]={0,0,1,0};
+        glTexGenfv(GL_S,GL_OBJECT_PLANE,planex);
+        glTexGenfv(GL_T,GL_OBJECT_PLANE,planez);
+        glTexGeni(GL_S,GL_TEXTURE_GEN_MODE,GL_OBJECT_LINEAR);
+        glTexGeni(GL_T,GL_TEXTURE_GEN_MODE,GL_OBJECT_LINEAR);
+        glEnable(GL_TEXTURE_GEN_S);
+        glEnable(GL_TEXTURE_GEN_T);
+        glEnable(GL_TEXTURE_GEN_R);
 #endif
-			m_textureinitialized=true;
-
-		
+          
+         m_textureinitialized=true;
 			
 
 		//drawCoordSystem();

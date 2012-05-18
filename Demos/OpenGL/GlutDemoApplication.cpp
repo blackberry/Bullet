@@ -82,6 +82,6 @@ void GlutDemoApplication::swapBuffers()
 
 }
 
-#endif //_WINDOWS, __QNX__
+#endif //_WINDOWS
 
 

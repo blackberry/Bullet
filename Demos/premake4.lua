@@ -12,12 +12,18 @@ function createDemos( demos, incdirs, linknames)
 	  	includedirs {incdirs}
 	  
 		configuration { "Windows" }
-	 		links { "glut32","glew32","opengl32" }
+			defines { "GLEW_STATIC"}
+	 		links { "opengl32" }
 			includedirs{	"../Glut"	}
 	 		libdirs {"../Glut"}
 	 		files   { "../msvc/bullet.rc" }
+	 		
+	 		configuration {"Windows", "x32"}
+				links {"glew32s","glut32"}
+			configuration {"Windows", "x64"}
+				links {"glew64s", "glut64"}
 	
-		configuration {"MaxOSX"}
+		configuration {"MacOSX"}
 			--print "hello"
 	 		linkoptions { "-framework Carbon -framework OpenGL -framework AGL -framework Glut" } 
 		
@@ -69,7 +75,8 @@ end
     "SliderConstraintDemo",
     "TerrainDemo",
     "UserCollisionAlgorithm",
-    "VehicleDemo"
+    "VehicleDemo",
+    "VoronoiFractureDemo"
   }
 
 -- the following demos require custom include or link settings

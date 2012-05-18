@@ -9,11 +9,11 @@
 
     <!-- A universally unique application identifier. Must be unique across all BlackBerry Tablet OS applications.
          Using a reverse DNS-style name as the id is recommended. (Eg. com.example.ExampleApplication.) Required. -->
-    <id>com.rim.bullet_demo_box2d</id>
+    <id>org.bulletphysics.Box2dDemo</id>
 
     <!-- The name that is displayed in the BlackBerry Tablet OS application installer. 
          May have multiple values for each language. See samples or xsd schema file. Optional. -->
-    <name>Box2d</name>
+    <name>Box2dDemo</name>
     
     <!-- A string value of the format <0-999>.<0-999>.<0-999> that represents application version which can be used to check for application upgrade. 
          Values can also be 1-part or 2-part. It is not necessary to have a 3-part value.
@@ -29,18 +29,19 @@
 
     <!-- Description, displayed in the BlackBerry Tablet OS application installer.
          May have multiple values for each language. See samples or xsd schema file. Optional. -->
+    <description>Box2dDemo</description>
 
     <!-- Copyright information. Optional. -->
     <!-- <copyright></copyright> -->
 
-    <!--  Name of author which is used for signing. Must match the developer name of your development certificate. -->
-    <author>Research In Motion</author>
-    <description>Box2d Demo (Bullet Physics)</description>
+    <!--  Name of author which is used for signing. Must match the developer name of your development certificate. -->    <author>RIM Canada</author>thor>
     
     <!--  Unique author ID assigned by signing authority. Required if using debug tokens. -->
     <!-- <authorId>ABC1234YjsnUk235h</authorId> -->
    
     <initialWindow>
+        <aspectRatio>landscape</aspectRatio>
+        <autoOrients>false</autoOrients>
         <systemChrome>none</systemChrome>
         <transparent>false</transparent>
     </initialWindow>
@@ -48,33 +49,33 @@
     <!--  The category where the application appears. Either core.games or core.media. -->
     <category>core.games</category>
     <asset path="icon.png">icon.png</asset>
-    <configuration id="com.qnx.qcc.configuration.exe.debug.1057182989" name="Device-Debug">
-       <asset path="${QNX_TARGET}\..\target-override\armle-v7\usr\lib\libbps.so" type="Qnx/Elf">lib/libbps.so.1</asset>
-       <asset path="${workspace_loc:/bullet/Demos/BasicDemo/Device-Debug/bullet_demo_box2d}" entry="true" type="Qnx/Elf">bullet_demo_box2d</asset>
+    <configuration id="com.qnx.qcc.configuration.exe.debug.1925949395" name="Device-Debug">
+       <platformArchitecture>armle-v7</platformArchitecture>
+       <asset path="Device-Debug/Box2dDemo" entry="true" type="Qnx/Elf">Box2dDemo</asset>
     </configuration>
-    <configuration id="com.qnx.qcc.configuration.exe.release.1737788975" name="Device-Release">
-       <asset path="${QNX_TARGET}\..\target-override\armle-v7\usr\lib\libbps.so" type="Qnx/Elf">lib/libbps.so.1</asset>
-       <asset path="${workspace_loc:/bullet/Demos/BasicDemo/Device-Release/bullet_demo_box2d}" entry="true" type="Qnx/Elf">bullet_demo_box2d</asset>
+    <configuration id="com.qnx.qcc.configuration.exe.release.1730491221" name="Device-Release">
+       <platformArchitecture>armle-v7</platformArchitecture>
+       <asset path="Device-Release/Box2dDemo" entry="true" type="Qnx/Elf">Box2dDemo</asset>
     </configuration>
-    <configuration id="com.qnx.qcc.configuration.exe.profile.930757538" name="Device-Profile">
-       <asset path="${QNX_TARGET}\..\target-override\armle-v7\usr\lib\libbps.so" type="Qnx/Elf">lib/libbps.so.1</asset>
-       <asset path="${workspace_loc:/bullet/Demos/BasicDemo/Device-Profile/bullet_demo_box2d}" entry="true" type="Qnx/Elf">bullet_demo_box2d</asset>
+    <configuration id="com.qnx.qcc.configuration.exe.profile.942932462" name="Device-Profile">
+       <platformArchitecture>armle-v7</platformArchitecture>
+       <asset path="Device-Profile/Box2dDemo" entry="true" type="Qnx/Elf">Box2dDemo</asset>
     </configuration>
-    <configuration id="com.qnx.qcc.configuration.exe.profile.coverage.371812762" name="Device-Coverage">
-       <asset path="${QNX_TARGET}\..\target-override\armle-v7\usr\lib\libbps.so" type="Qnx/Elf">lib/libbps.so.1</asset>
-       <asset path="${workspace_loc:/bullet/Demos/BasicDemo/Device-Coverage/bullet_demo_box2d}" entry="true" type="Qnx/Elf">bullet_demo_box2d</asset>
+    <configuration id="com.qnx.qcc.configuration.exe.profile.coverage.1148597740" name="Device-Coverage">
+       <platformArchitecture>armle-v7</platformArchitecture>
+       <asset path="Device-Coverage/Box2dDemo" entry="true" type="Qnx/Elf">Box2dDemo</asset>
     </configuration>
-    <configuration id="com.qnx.qcc.configuration.exe.debug.543373700" name="Simulator">
-       <asset path="${QNX_TARGET}\..\target-override\x86\usr\lib\libbps.so" type="Qnx/Elf">lib/libbps.so.1</asset>
-       <asset path="${workspace_loc:/bullet/Demos/BasicDemo/Simulator/bullet_demo_box2d}" entry="true" type="Qnx/Elf">bullet_demo_box2d</asset>
+    <configuration id="com.qnx.qcc.configuration.exe.debug.1963364241" name="Simulator-Debug">
+       <platformArchitecture>x86</platformArchitecture>
+       <asset path="Simulator-Debug/Box2dDemo" entry="true" type="Qnx/Elf">Box2dDemo</asset>
     </configuration>
-    <configuration id="com.qnx.qcc.configuration.exe.profile.2099483421" name="Simulator-Profile">
-       <asset path="${QNX_TARGET}\..\target-override\x86\usr\lib\libbps.so" type="Qnx/Elf">lib/libbps.so.1</asset>
-       <asset path="${workspace_loc:/bullet/Demos/BasicDemo/Simulator-Profile/bullet_demo_box2d}" entry="true" type="Qnx/Elf">bullet_demo_box2d</asset>
+    <configuration id="com.qnx.qcc.configuration.exe.profile.142872959" name="Simulator-Profile">
+       <platformArchitecture>x86</platformArchitecture>
+       <asset path="Simulator-Profile/Box2dDemo" entry="true" type="Qnx/Elf">Box2dDemo</asset>
     </configuration>
-    <configuration id="com.qnx.qcc.configuration.exe.profile.coverage.1532520975" name="Simulator-Coverage">
-       <asset path="${QNX_TARGET}\..\target-override\x86\usr\lib\libbps.so" type="Qnx/Elf">lib/libbps.so.1</asset>
-       <asset path="${workspace_loc:/bullet/Demos/BasicDemo/Simulator-Coverage/bullet_demo_box2d}" entry="true" type="Qnx/Elf">bullet_demo_box2d</asset>
+    <configuration id="com.qnx.qcc.configuration.exe.profile.coverage.343528351" name="Simulator-Coverage">
+       <platformArchitecture>x86</platformArchitecture>
+       <asset path="Simulator-Coverage/Box2dDemo" entry="true" type="Qnx/Elf">Box2dDemo</asset>
     </configuration>
     
     <!--  The icon for the application, which should be 86x86. -->
@@ -99,4 +100,7 @@
     <!--  <action>set_audio_volume</action> -->
     <!--  <action>read_device_identifying_information</action> -->
 
+    <!-- Ensure that shared libraries in the package are found at run-time. -->
+    <env var="LD_LIBRARY_PATH" value="app/native/lib"/>
+    
 </qnx>

@@ -263,9 +263,6 @@ public:
 			glVertex3f (source[i][0], source[i][1], source[i][2]);
 			glVertex3f (hit_com[i][0], hit_com[i][1], hit_com[i][2]);
 		}
-#ifdef __QNX__
-        glEnd();
-#endif
 		glColor3f (1.0, 1.0, 1.0);
 		glBegin (GL_LINES);
 		btScalar normal_scale = 10.0; // easier to see if this is big
@@ -274,7 +271,9 @@ public:
 			glVertex3f (hit_surface[i][0], hit_surface[i][1], hit_surface[i][2]);
 			glVertex3f (hit_surface[i][0] + normal_scale * normal[i][0], hit_surface[i][1] + normal_scale * normal[i][1], hit_surface[i][2] + normal_scale * normal[i][2]);
 		}
-		glEnd ();
+#ifdef __QNX__
+        glEnd();
+#endif
 		glColor3f (0.0, 1.0, 1.0);
 		btQuaternion qFrom;
 		btQuaternion qTo;
