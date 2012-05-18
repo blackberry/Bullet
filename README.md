@@ -1,7 +1,6 @@
-# Bullet
+# Bullet v2.8
 
-The _**Bullet**_ repository holds the sources for the Bullet, a professional free 3D game multi-physics library, ported to run with the Native SDK for BlackBerry © Tablet OS.
-
+The _**Bullet**_ repository holds the sources for the Bullet, a professional free 3D game multi-physics library. It has been additionally ported to run with the BlackBerry Native SDK for BlackBerry Tablet OS and BlackBerry 10 OS.
 
 **Repository Committers** 
 

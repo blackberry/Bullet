@@ -117,4 +117,4 @@ CGLSetParameter(cgl_context, kCGLCPSwapInterval, &swap_interval);
 }
 
 
-#endif //_WINDOWS, __QNX__
+#endif //_WINDOWS

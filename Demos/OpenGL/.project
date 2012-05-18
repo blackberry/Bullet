@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>bullet_demo_openglsupport</name>
+	<name>BulletOpenGL</name>
 	<comment></comment>
 	<projects>
+		<project>Bullet</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
@@ -31,7 +32,7 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildLocation</key>
-					<value>${workspace_loc:/bullet_demo_openglsupport/Device-Debug}</value>
+					<value>${workspace_loc:/BulletOpenGL/Device-Debug}</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.contents</key>

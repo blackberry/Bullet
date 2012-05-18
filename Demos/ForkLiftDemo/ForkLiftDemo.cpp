@@ -519,7 +519,6 @@ void ForkLiftDemo::clientMoveAndDisplay()
     lx = x;
     ly = y;
 #endif
-
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
 
 	
@@ -905,6 +904,7 @@ void ForkLiftDemo::lockForkSlider(void)
 	}
 	return;
 } // ForkLiftDemo::lockForkSlider()
+
 
 #ifdef __QNX__
 void ForkLiftDemo::keyboardCallback(unsigned char key, int x, int y)

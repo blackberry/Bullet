@@ -32,7 +32,6 @@ subject to the following restrictions:
 #include <windows.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
-
 #else
 #ifdef __QNX__
 #include <GLES/gl.h>
