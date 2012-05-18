@@ -113,7 +113,6 @@ static btScalar TaruVtx[] = {
 #endif
 #include "GlutStuff.h"
 
-
 #ifdef __QNX__
 class ConvexHullDistanceDemo : public QnxDemoApplication
 {
@@ -170,7 +169,6 @@ ConvexHullDistanceDemo::~ConvexHullDistanceDemo()
         delete[] tr;
 }
 #else
-
 float yaw=0.f,pitch=0.f,roll=0.f;
 const int maxNumObjects = 4;
 const int numObjects = 2;
@@ -211,6 +209,7 @@ void ConvexHullDistanceDemo::updateCamera() {
 #else
 void updateCamera() {
 #endif
+
 
 
 	glMatrixMode(GL_PROJECTION);
@@ -303,7 +302,6 @@ void updateCamera() {
 
 int main(int argc,char** argv)
 {
-
 #ifdef __QNX__
     ConvexHullDistanceDemo demo;
     demo.initPhysics();
@@ -314,6 +312,7 @@ int main(int argc,char** argv)
 void ConvexHullDistanceDemo::initPhysics()
 {
 #endif
+
 	clientResetScene();
 
 	btMatrix3x3 basisA;
@@ -562,7 +561,6 @@ int myglutmain(int argc, char **argv,int width,int height,const char* title) {
 #ifdef BT_USE_FREEGLUT
 	glutSetOption (GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
 #endif
-
 
 	glutIdleFunc( clientDisplay );
 	glutDisplayFunc( clientDisplay );

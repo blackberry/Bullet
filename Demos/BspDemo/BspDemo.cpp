@@ -192,7 +192,11 @@ void	BspDemo::initPhysics(const char* bspfilename)
 		//try again other path, 
 		//sight... visual studio leaves the current working directory in the projectfiles folder
 		//instead of executable folder. who wants this default behaviour?!?
+#ifdef __QNX__
+      bspfilename = "app/native/BspDemo.bsp";
+      #else
 		bspfilename = "BspDemo.bsp";
+      #endif
 		file = fopen(bspfilename,"r");
 	}
 

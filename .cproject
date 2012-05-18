@@ -31,9 +31,9 @@
 									<listOptionValue builtIn="false" value="_FORTIFY_SOURCE=2"/>
 								</option>
 								<option id="com.qnx.qcc.option.compiler.includePath.796134610" name="Include Directories (-I)" superClass="com.qnx.qcc.option.compiler.includePath" valueType="includePath">
+									<listOptionValue builtIn="false" value="C:/bbndk-2.0.1/target/qnx6/usr/include/freetype2"/>
+									<listOptionValue builtIn="false" value="C:/bbndk-2.0.1/target/target-override/usr/include"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src}&quot;"/>
-									<listOptionValue builtIn="false" value="${QNX_TARGET}/usr/include/freetype2"/>
-									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/usr/include"/>
 								</option>
 								<inputType id="com.qnx.qcc.inputType.compiler.394065364" superClass="com.qnx.qcc.inputType.compiler"/>
 							</tool>
@@ -91,9 +91,9 @@
 									<listOptionValue builtIn="false" value="_FORTIFY_SOURCE=2"/>
 								</option>
 								<option id="com.qnx.qcc.option.compiler.includePath.1752144234" name="Include Directories (-I)" superClass="com.qnx.qcc.option.compiler.includePath" valueType="includePath">
+									<listOptionValue builtIn="false" value="C:/bbndk-2.0.1/target/qnx6/usr/include/freetype2"/>
+									<listOptionValue builtIn="false" value="C:/bbndk-2.0.1/target/target-override/usr/include"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src}&quot;"/>
-									<listOptionValue builtIn="false" value="${QNX_TARGET}/usr/include/freetype2"/>
-									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/usr/include"/>
 								</option>
 								<inputType id="com.qnx.qcc.inputType.compiler.1298308727" superClass="com.qnx.qcc.inputType.compiler"/>
 							</tool>
@@ -150,9 +150,9 @@
 									<listOptionValue builtIn="false" value="_FORTIFY_SOURCE=2"/>
 								</option>
 								<option id="com.qnx.qcc.option.compiler.includePath.2091086762" name="Include Directories (-I)" superClass="com.qnx.qcc.option.compiler.includePath" valueType="includePath">
+									<listOptionValue builtIn="false" value="C:/bbndk-2.0.1/target/qnx6/usr/include/freetype2"/>
+									<listOptionValue builtIn="false" value="C:/bbndk-2.0.1/target/target-override/usr/include"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src}&quot;"/>
-									<listOptionValue builtIn="false" value="${QNX_TARGET}/usr/include/freetype2"/>
-									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/usr/include"/>
 								</option>
 								<inputType id="com.qnx.qcc.inputType.compiler.1152186716" superClass="com.qnx.qcc.inputType.compiler"/>
 							</tool>
@@ -212,9 +212,9 @@
 									<listOptionValue builtIn="false" value="_FORTIFY_SOURCE=2"/>
 								</option>
 								<option id="com.qnx.qcc.option.compiler.includePath.921440642" name="Include Directories (-I)" superClass="com.qnx.qcc.option.compiler.includePath" valueType="includePath">
+									<listOptionValue builtIn="false" value="C:/bbndk-2.0.1/target/qnx6/usr/include/freetype2"/>
+									<listOptionValue builtIn="false" value="C:/bbndk-2.0.1/target/target-override/usr/include"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src}&quot;"/>
-									<listOptionValue builtIn="false" value="${QNX_TARGET}/usr/include/freetype2"/>
-									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/usr/include"/>
 								</option>
 								<inputType id="com.qnx.qcc.inputType.compiler.825722143" superClass="com.qnx.qcc.inputType.compiler"/>
 							</tool>
@@ -272,9 +272,9 @@
 									<listOptionValue builtIn="false" value="_FORTIFY_SOURCE=2"/>
 								</option>
 								<option id="com.qnx.qcc.option.compiler.includePath.1714257336" name="Include Directories (-I)" superClass="com.qnx.qcc.option.compiler.includePath" valueType="includePath">
+									<listOptionValue builtIn="false" value="C:/bbndk-2.0.1/target/qnx6/usr/include/freetype2"/>
+									<listOptionValue builtIn="false" value="C:/bbndk-2.0.1/target/target-override/usr/include"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src}&quot;"/>
-									<listOptionValue builtIn="false" value="${QNX_TARGET}/usr/include/freetype2"/>
-									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/usr/include"/>
 								</option>
 								<inputType id="com.qnx.qcc.inputType.compiler.656604421" superClass="com.qnx.qcc.inputType.compiler"/>
 							</tool>
@@ -332,9 +332,9 @@
 									<listOptionValue builtIn="false" value="_FORTIFY_SOURCE=2"/>
 								</option>
 								<option id="com.qnx.qcc.option.compiler.includePath.1844478460" name="Include Directories (-I)" superClass="com.qnx.qcc.option.compiler.includePath" valueType="includePath">
+									<listOptionValue builtIn="false" value="C:/bbndk-2.0.1/target/qnx6/usr/include/freetype2"/>
+									<listOptionValue builtIn="false" value="C:/bbndk-2.0.1/target/target-override/usr/include"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src}&quot;"/>
-									<listOptionValue builtIn="false" value="${QNX_TARGET}/usr/include/freetype2"/>
-									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/usr/include"/>
 								</option>
 								<inputType id="com.qnx.qcc.inputType.compiler.1440167337" superClass="com.qnx.qcc.inputType.compiler"/>
 							</tool>
@@ -393,9 +393,9 @@
 									<listOptionValue builtIn="false" value="_FORTIFY_SOURCE=2"/>
 								</option>
 								<option id="com.qnx.qcc.option.compiler.includePath.185233219" name="Include Directories (-I)" superClass="com.qnx.qcc.option.compiler.includePath" valueType="includePath">
+									<listOptionValue builtIn="false" value="C:/bbndk-2.0.1/target/qnx6/usr/include/freetype2"/>
+									<listOptionValue builtIn="false" value="C:/bbndk-2.0.1/target/target-override/usr/include"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src}&quot;"/>
-									<listOptionValue builtIn="false" value="${QNX_TARGET}/usr/include/freetype2"/>
-									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/usr/include"/>
 								</option>
 								<inputType id="com.qnx.qcc.inputType.compiler.804140178" superClass="com.qnx.qcc.inputType.compiler"/>
 							</tool>

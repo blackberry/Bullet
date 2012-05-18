@@ -107,31 +107,39 @@ Alternatively, use CMake to autogenerate a build system for Windows:
     ./configure
     make
 
+** BlackBerry (QNX-based) Command-line Compilation **
 
-** QNX (from Windows) Compilation **
-  - To build for the QNX platform on Windows, run cmd.exe and execute the following commands:
+  - To build for the QNX platform  run cmd.exe and execute the following commands:
     > cd [bbndk]				where [bbndk] is where the QNX NDK was installed (i.e. C:\bbndk)
-    > bbndk-env.bat
+    > bbndk-env.bat             on windows or bbndk-env.sh on MacOSX or Linux.
     > cd [bullet]/qnx			where [bullet] is the directory where Bullet was extracted to
     > make
-    Following this, the relevant binaries should reside in the following subdirectories under each
-    subdirectory of [bullet]/qnx:
     
-    for the BulletCollision, BulletDynamics, BulletSoftBody, BulletFileLoader, BulletWorldImporter, 
-    ConvexDecomposition, HACD, and OpenGLSupport libraries:
-        arm/a.le.v7     (ARM release)
-        arm/a.le.v7.g   (ARM debug)
-        x86/a           (x86 simulator release)
-        x86/a.g         (x86 simulator debug)
-    for all of the demo programs:
-        arm/o.le.v7      (ARM release)
-        arm/o.le.v7.g    (ARM debug)
-        x86/o            (x86 simulator release)
-        x86/o.g          (x86 simulator debug)
-    
-    To build just the libraries, run 'make libs' from [bullet]/qnx and to build just the demos (note 
-    that the libraries must be built first), run 'make demos' from [bullet]/qnx. To build a particular 
-    library or demo program individually, change into its subdirectory and run 'make'.
+    The BulletCollision, BulletDynamics, BulletSoftBody, LinearMath sources are combined
+    and built into a single library. Following this, the relevant binaries should reside 
+    in the following subdirectories:
+
+libBullet: 
+        [bullet]/qnx/Bullet/arm/a.le.v7      (ARM release)
+        [bullet]/qnx/Bullet/arm/a.le.v7.g    (ARM debug)
+        [bullet]/qnx/Bullet/x86/a            (x86 simulator release)
+        [bullet]/qnx/Bullet/x86/a.g          (x86 simulator debug)
+
+        
+** BlackBerry (QNX-based) Momentics IDE **
+
+To build for BlackBerry (QNX-based) platform from Momentics IDE:
+- Right click on Project Explorer->Import.
+- Select "Existing Existing Project into Workspace"->Next
+- Select "Select root directory:" as [bullet] 
+- Check the "Bullet" project (without copying project option). Then click Finish.
+- Right click the "Bullet" project then Build.
+To optionally build Bullet Demos:
+- Select "Select root directory:" as [bullet]/Demos 
+- Check all the projects (without copying project option). Then click Finish.
+- Right click each and then Build and Run.
+
+
 
 
 ** For more help, visit http://www.bulletphysics.org **

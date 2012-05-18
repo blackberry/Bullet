@@ -106,7 +106,7 @@ class ForkLiftDemo : public GlutDemoApplication
 		demo->initPhysics();
 		return demo;
 	}
-
+    
 #ifdef __QNX__
     virtual void keyboardCallback(unsigned char key, int x, int y);
     int glutGetModifiers();
