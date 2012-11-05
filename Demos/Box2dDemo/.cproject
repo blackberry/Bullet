@@ -42,6 +42,10 @@
 								<option id="com.qnx.qcc.option.compiler.security.1847970060" name="Enhanced Security (-fstack-protector-all)" superClass="com.qnx.qcc.option.compiler.security" value="true" valueType="boolean"/>
 								<option id="com.qnx.qcc.option.compiler.defines.1928904412" name="Defines (-D)" superClass="com.qnx.qcc.option.compiler.defines" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="_FORTIFY_SOURCE=2"/>
+									<listOptionValue builtIn="false" value="BT_USE_NEON"/>
+								</option>
+								<option id="com.qnx.qcc.option.compiler.ccoptions.1507577269" superClass="com.qnx.qcc.option.compiler.ccoptions" valueType="stringList">
+									<listOptionValue builtIn="false" value="-mfpu=neon"/>
 								</option>
 								<inputType id="com.qnx.qcc.inputType.compiler.633440019" superClass="com.qnx.qcc.inputType.compiler"/>
 							</tool>
@@ -116,15 +120,19 @@
 								<option id="com.qnx.qcc.option.compiler.security.1347094355" name="Enhanced Security (-fstack-protector-all)" superClass="com.qnx.qcc.option.compiler.security" value="true" valueType="boolean"/>
 								<option id="com.qnx.qcc.option.compiler.defines.1468861015" name="Defines (-D)" superClass="com.qnx.qcc.option.compiler.defines" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="_FORTIFY_SOURCE=2"/>
+									<listOptionValue builtIn="false" value="BT_USE_NEON"/>
 								</option>
 								<option id="com.qnx.qcc.option.compiler.pie.1427538065" name="Position Independent Executable (-fPIE)" superClass="com.qnx.qcc.option.compiler.pie" value="true" valueType="boolean"/>
 								<option id="com.qnx.qcc.option.compiler.qccoptions.1183238197" name="QCC Options" superClass="com.qnx.qcc.option.compiler.qccoptions" valueType="stringList">
 									<listOptionValue builtIn="false" value="-frecord-gcc-switches"/>
 								</option>
+								<option id="com.qnx.qcc.option.compiler.ccoptions.102455466" superClass="com.qnx.qcc.option.compiler.ccoptions" valueType="stringList">
+									<listOptionValue builtIn="false" value="-mfpu=neon"/>
+								</option>
 								<inputType id="com.qnx.qcc.inputType.compiler.33999560" superClass="com.qnx.qcc.inputType.compiler"/>
 							</tool>
 							<tool id="com.qnx.qcc.tool.assembler.1618039571" name="QCC Assembler" superClass="com.qnx.qcc.tool.assembler">
-								<option id="com.qnx.qcc.option.assembler.includePath.1599968949" superClass="com.qnx.qcc.option.assembler.includePath" valueType="includePath">
+								<option id="com.qnx.qcc.option.assembler.includePath.1599968949" name="Include Directories (-I)" superClass="com.qnx.qcc.option.assembler.includePath" valueType="includePath">
 									<listOptionValue builtIn="false" value="C:/bbndk-2.0.1/target/qnx6/usr/include/freetype2"/>
 									<listOptionValue builtIn="false" value="C:/bbndk-2.0.1/target/target-override/usr/include"/>
 								</option>
@@ -200,7 +208,7 @@
 							</tool>
 							<tool id="com.qnx.qcc.tool.assembler.666557024" name="QCC Assembler" superClass="com.qnx.qcc.tool.assembler">
 								<option id="com.qnx.qcc.option.assembler.debug.965285164" name="Debug (-g)" superClass="com.qnx.qcc.option.assembler.debug" value="true" valueType="boolean"/>
-								<option id="com.qnx.qcc.option.assembler.includePath.979234583" superClass="com.qnx.qcc.option.assembler.includePath" valueType="includePath">
+								<option id="com.qnx.qcc.option.assembler.includePath.979234583" name="Include Directories (-I)" superClass="com.qnx.qcc.option.assembler.includePath" valueType="includePath">
 									<listOptionValue builtIn="false" value="C:/bbndk-2.0.1/target/qnx6/usr/include/freetype2"/>
 									<listOptionValue builtIn="false" value="C:/bbndk-2.0.1/target/target-override/usr/include"/>
 								</option>
@@ -277,7 +285,7 @@
 							</tool>
 							<tool id="com.qnx.qcc.tool.assembler.347017140" name="QCC Assembler" superClass="com.qnx.qcc.tool.assembler">
 								<option id="com.qnx.qcc.option.assembler.debug.1841075875" name="Debug (-g)" superClass="com.qnx.qcc.option.assembler.debug" value="true" valueType="boolean"/>
-								<option id="com.qnx.qcc.option.assembler.includePath.1035267119" superClass="com.qnx.qcc.option.assembler.includePath" valueType="includePath">
+								<option id="com.qnx.qcc.option.assembler.includePath.1035267119" name="Include Directories (-I)" superClass="com.qnx.qcc.option.assembler.includePath" valueType="includePath">
 									<listOptionValue builtIn="false" value="C:/bbndk-2.0.1/target/qnx6/usr/include/freetype2"/>
 									<listOptionValue builtIn="false" value="C:/bbndk-2.0.1/target/target-override/usr/include"/>
 								</option>
@@ -285,7 +293,7 @@
 							</tool>
 							<tool id="com.qnx.qcc.tool.linker.699856147" name="QCC Linker" superClass="com.qnx.qcc.tool.linker">
 								<option id="com.qnx.qcc.option.linker.debug.1758523931" name="Debug (-g)" superClass="com.qnx.qcc.option.linker.debug" value="true" valueType="boolean"/>
-								<option id="com.qnx.qcc.option.linker.coverage.692759094" name="Build for Code Coverage (-ftest-coverage -fprofile-arcs -p)" superClass="com.qnx.qcc.option.linker.coverage" value="true" valueType="boolean"/>
+								<option id="com.qnx.qcc.option.linker.coverage.692759094" name="Build for Code Coverage (-ftest-coverage -fprofile-arcs)" superClass="com.qnx.qcc.option.linker.coverage" value="true" valueType="boolean"/>
 								<option id="com.qnx.qcc.option.linker.langcpp.1561789624" name="C++ (-lang-c++)" superClass="com.qnx.qcc.option.linker.langcpp" value="true" valueType="boolean"/>
 								<option id="com.qnx.qcc.option.linker.libraryPaths.892717792" name="Library Paths (-L)" superClass="com.qnx.qcc.option.linker.libraryPaths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Bullet/Device-Debug}&quot;"/>
@@ -352,7 +360,7 @@
 							</tool>
 							<tool id="com.qnx.qcc.tool.assembler.709666112" name="QCC Assembler" superClass="com.qnx.qcc.tool.assembler">
 								<option id="com.qnx.qcc.option.assembler.debug.841639249" name="Debug (-g)" superClass="com.qnx.qcc.option.assembler.debug" value="true" valueType="boolean"/>
-								<option id="com.qnx.qcc.option.assembler.includePath.1923681170" superClass="com.qnx.qcc.option.assembler.includePath" valueType="includePath">
+								<option id="com.qnx.qcc.option.assembler.includePath.1923681170" name="Include Directories (-I)" superClass="com.qnx.qcc.option.assembler.includePath" valueType="includePath">
 									<listOptionValue builtIn="false" value="C:/bbndk-2.0.1/target/qnx6/usr/include/freetype2"/>
 									<listOptionValue builtIn="false" value="C:/bbndk-2.0.1/target/target-override/usr/include"/>
 								</option>
@@ -427,7 +435,7 @@
 							</tool>
 							<tool id="com.qnx.qcc.tool.assembler.110039043" name="QCC Assembler" superClass="com.qnx.qcc.tool.assembler">
 								<option id="com.qnx.qcc.option.assembler.debug.1224633762" name="Debug (-g)" superClass="com.qnx.qcc.option.assembler.debug" value="true" valueType="boolean"/>
-								<option id="com.qnx.qcc.option.assembler.includePath.2043880175" superClass="com.qnx.qcc.option.assembler.includePath" valueType="includePath">
+								<option id="com.qnx.qcc.option.assembler.includePath.2043880175" name="Include Directories (-I)" superClass="com.qnx.qcc.option.assembler.includePath" valueType="includePath">
 									<listOptionValue builtIn="false" value="C:/bbndk-2.0.1/target/qnx6/usr/include/freetype2"/>
 									<listOptionValue builtIn="false" value="C:/bbndk-2.0.1/target/target-override/usr/include"/>
 								</option>
@@ -503,7 +511,7 @@
 							</tool>
 							<tool id="com.qnx.qcc.tool.assembler.1236509489" name="QCC Assembler" superClass="com.qnx.qcc.tool.assembler">
 								<option id="com.qnx.qcc.option.assembler.debug.2062991198" name="Debug (-g)" superClass="com.qnx.qcc.option.assembler.debug" value="true" valueType="boolean"/>
-								<option id="com.qnx.qcc.option.assembler.includePath.640565050" superClass="com.qnx.qcc.option.assembler.includePath" valueType="includePath">
+								<option id="com.qnx.qcc.option.assembler.includePath.640565050" name="Include Directories (-I)" superClass="com.qnx.qcc.option.assembler.includePath" valueType="includePath">
 									<listOptionValue builtIn="false" value="C:/bbndk-2.0.1/target/qnx6/usr/include/freetype2"/>
 									<listOptionValue builtIn="false" value="C:/bbndk-2.0.1/target/target-override/usr/include"/>
 								</option>
@@ -511,7 +519,7 @@
 							</tool>
 							<tool id="com.qnx.qcc.tool.linker.278353712" name="QCC Linker" superClass="com.qnx.qcc.tool.linker">
 								<option id="com.qnx.qcc.option.linker.debug.1912672967" name="Debug (-g)" superClass="com.qnx.qcc.option.linker.debug" value="true" valueType="boolean"/>
-								<option id="com.qnx.qcc.option.linker.coverage.167245595" name="Build for Code Coverage (-ftest-coverage -fprofile-arcs -p)" superClass="com.qnx.qcc.option.linker.coverage" value="true" valueType="boolean"/>
+								<option id="com.qnx.qcc.option.linker.coverage.167245595" name="Build for Code Coverage (-ftest-coverage -fprofile-arcs)" superClass="com.qnx.qcc.option.linker.coverage" value="true" valueType="boolean"/>
 								<option id="com.qnx.qcc.option.linker.langcpp.393553387" name="C++ (-lang-c++)" superClass="com.qnx.qcc.option.linker.langcpp" value="true" valueType="boolean"/>
 								<option id="com.qnx.qcc.option.linker.libraryPaths.885445396" name="Library Paths (-L)" superClass="com.qnx.qcc.option.linker.libraryPaths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Bullet/Device-Debug}&quot;"/>
