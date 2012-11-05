@@ -137,7 +137,8 @@ To build for BlackBerry (QNX-based) platform from Momentics IDE:
 To optionally build Bullet Demos:
 - Select "Select root directory:" as [bullet]/Demos 
 - Check all the projects (without copying project option). Then click Finish.
-- Right click each and then Build and Run.
+- Right click BulletOpenGL and then Build.
+- Right click each remaining and then Build and Run.
 
 
 
