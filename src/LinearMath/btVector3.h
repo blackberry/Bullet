@@ -143,7 +143,9 @@ public:
 	{
 		mVec128 = rhs.mVec128;
 	}
+#endif // #if (defined (BT_USE_SSE_IN_API) && defined (BT_USE_SSE) )|| defined (BT_USE_NEON)
 
+#if (defined (BT_USE_SSE_IN_API) && defined (BT_USE_SSE) ) || (defined (__APPLE__) && defined (BT_USE_NEON))
 	// Assignment Operator
 	SIMD_FORCE_INLINE btVector3& 
 	operator=(const btVector3& v) 
@@ -152,7 +154,7 @@ public:
 		
 		return *this;
 	}
-#endif // #if defined (BT_USE_SSE_IN_API) || defined (BT_USE_NEON) 
+#endif // #if (defined (BT_USE_SSE_IN_API) && defined (BT_USE_SSE) ) || (defined (__APPLE__) && defined (BT_USE_NEON))
     
 /**@brief Add a vector to this one 
  * @param The vector to add to this one */

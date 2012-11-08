@@ -8,6 +8,8 @@ NAME=Bullet
 # Suppress the _g suffix from the debug variant
 BUILDNAME=$(IMAGE_PREF_$(BUILD_TYPE))$(NAME)$(IMAGE_SUFF_$(BUILD_TYPE))
 
+CCFLAGS += -DBT_USE_NEON -mfpu=neon
+
 #===== EXTRA_INCVPATH - a space-separated list of directories to search for include files.
 EXTRA_INCVPATH+=$(PRODUCT_ROOT)/../../Bullet/src
 
