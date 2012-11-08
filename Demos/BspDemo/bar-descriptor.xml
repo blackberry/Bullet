@@ -68,9 +68,9 @@
        <platformArchitecture>armle-v7</platformArchitecture>
        <asset path="Device-Coverage/BspDemo" entry="true" type="Qnx/Elf">BspDemo</asset>
     </configuration>
-    <configuration id="com.qnx.qcc.configuration.exe.debug.238607602" name="Simulator-Debug">
+    <configuration id="com.qnx.qcc.configuration.exe.debug.238607602" name="Simulator">
        <platformArchitecture>x86</platformArchitecture>
-       <asset path="Simulator-Debug/BspDemo" entry="true" type="Qnx/Elf">BspDemo</asset>
+       <asset path="Simulator/BspDemo" entry="true" type="Qnx/Elf">BspDemo</asset>
     </configuration>
     <configuration id="com.qnx.qcc.configuration.exe.profile.1096832748" name="Simulator-Profile">
        <platformArchitecture>x86</platformArchitecture>
