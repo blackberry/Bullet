@@ -812,7 +812,7 @@ long _mindot_large( const float *vv, const float *vec, unsigned long count, floa
 }
 
 
-#elif defined BT_USE_NEON
+#elif defined (__APPLE__) && defined (BT_USE_NEON)
 #define ARM_NEON_GCC_COMPATIBILITY  1
 #include <arm_neon.h>
 
@@ -1622,7 +1622,7 @@ long _mindot_large_v1( const float *vv, const float *vec, unsigned long count, f
     
 }
 
-#else
+#elif defined (__APPLE__)
     #error Unhandled __APPLE__ arch
 #endif
 

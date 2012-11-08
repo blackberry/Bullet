@@ -65,9 +65,9 @@
        <platformArchitecture>armle-v7</platformArchitecture>
        <asset path="Device-Coverage/Box2dDemo" entry="true" type="Qnx/Elf">Box2dDemo</asset>
     </configuration>
-    <configuration id="com.qnx.qcc.configuration.exe.debug.1963364241" name="Simulator-Debug">
+    <configuration id="com.qnx.qcc.configuration.exe.debug.1963364241" name="Simulator">
        <platformArchitecture>x86</platformArchitecture>
-       <asset path="Simulator-Debug/Box2dDemo" entry="true" type="Qnx/Elf">Box2dDemo</asset>
+       <asset path="Simulator/Box2dDemo" entry="true" type="Qnx/Elf">Box2dDemo</asset>
     </configuration>
     <configuration id="com.qnx.qcc.configuration.exe.profile.142872959" name="Simulator-Profile">
        <platformArchitecture>x86</platformArchitecture>
