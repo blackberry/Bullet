@@ -66,9 +66,9 @@
        <platformArchitecture>armle-v7</platformArchitecture>
        <asset path="Device-Coverage/BasicDemo" entry="true" type="Qnx/Elf">BasicDemo</asset>
     </configuration>
-    <configuration id="com.qnx.qcc.configuration.exe.debug.1176710407" name="Simulator-Debug">
+    <configuration id="com.qnx.qcc.configuration.exe.debug.1176710407" name="Simulator">
        <platformArchitecture>x86</platformArchitecture>
-       <asset path="Simulator-Debug/BasicDemo" entry="true" type="Qnx/Elf">BasicDemo</asset>
+       <asset path="Simulator/BasicDemo" entry="true" type="Qnx/Elf">BasicDemo</asset>
     </configuration>
     <configuration id="com.qnx.qcc.configuration.exe.profile.918794581" name="Simulator-Profile">
        <platformArchitecture>x86</platformArchitecture>
